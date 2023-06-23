@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name = "viewport" content = "width-device-width, initial-scale=1.0"/>
+
+    <link href="{{url_for('static', filename = 'css/style.css')}}" rel = "stylesheet" type = "text/css"/>
+    <link href="{{url_for('static', filename = 'css/style1.css')}}" rel = "stylesheet" type = "text/css"/>
+    <title>Delete an Article</title>
+
+    <nav class = "nav-bar">
+        <div class = "nav-div">
+            <ul>
+                <li><a href = "/#">Home</a></li> | 
+                <li><a href = "{{url_for ('article_create')}}">Add</a></li>
+            </ul>
+        </div>
+    </nav>
+
+</head>
+
+<body>
+
+    <div class = "heading">
+        <h1><a href = "/#">SMARTEN BLOG</a></h1> 
+    </div>
+    
+    <div class = "wrapper_auth">
+        <div class = "title">
+            Delete an Article
+        </div>
+
+        <form action = "" method = "POST">
+            Are you sure you want to delete<br/>
+            "{{post_id}}"?
+            <div class="radio-field">
+                <input type = "radio" name = "options" value = "Yes"> Yes
+                <input type = "radio" name = "options" value = "No"> No
+            </div>
+
+            <input type = "submit" value = "Submit" class = "btn">
+            <input type = "button" value = "Cancel" class = "btn" onclick = "window.location.href='home_trial.html'">
+        </form>
+
+        
+    </div>
+
+ 
+
+
+</body>
+
+</html>
