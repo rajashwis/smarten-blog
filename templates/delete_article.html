@@ -33,14 +33,26 @@
 
         <form action = "" method = "POST">
             Are you sure you want to delete<br/>
-            "{{post_id}}"?
+            "{{post_name}}"?
             <div class="radio-field">
                 <input type = "radio" name = "options" value = "Yes"> Yes
                 <input type = "radio" name = "options" value = "No"> No
             </div>
 
-            <input type = "submit" value = "Submit" class = "btn">
-            <input type = "button" value = "Cancel" class = "btn" onclick = "window.location.href='home_trial.html'">
+            <div class = "btn-container">
+                <input type = "submit" value = "Submit" class = "btn-1">
+
+                <input type = "button" value = "Cancel" class = "btn-1" onClick="myFunction()">
+
+                
+                <script>
+                function myFunction() {
+                    window.location.href= "{{url_for ('posts_individual', post_id = post_id)}}";
+                }
+                </script>
+                
+            </div>
+            
         </form>
 
         

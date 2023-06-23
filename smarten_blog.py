@@ -461,13 +461,13 @@ def delete_article(post_id):
                 flash("Article Deleted!", "success")
                 return redirect(url_for('index'))
             else:
-                return redirect(url_for('index'))
+                return redirect(url_for('posts_individual', post_id = post_id))
         
         else:
             mycursor.execute(f'SELECT title FROM article WHERE article_id = {post_id}')
-            post_id = mycursor.fetchall()
-            post_id = post_id[0][0]
-            return render_template("delete_article.html", post_id = post_id)
+            post_name = mycursor.fetchall()
+            post_name = post_name[0][0]
+            return render_template("delete_article.html", post_id = post_id, post_name = post_name)
         
     else:
         flash("You aren't authorised!", "warning")
