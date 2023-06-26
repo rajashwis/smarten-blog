@@ -1,0 +1,127 @@
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+        <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+
+        <link href="{{url_for('static', filename = 'css/style.css')}}" rel = "stylesheet" type = "text/css"/>
+        <title>{{post[0][1]}}</title>
+
+        <nav class = "nav-bar">
+            <div class = "nav-div">
+                <ul>
+                    {% if post[0][-1] == current_user.id %}
+                        <li><a href = "/#">Home</a></li> | 
+                        <li><a href = "{{url_for ('edit_article', post_id = post[0][0])}}">Edit</a></li> |
+                        <li><a href = "{{url_for ('delete_article', post_id = post[0][0])}}">Delete</a></li> |
+                        <li><a href = "{{url_for ('logout')}}">Log Out</a></li>
+                    {% else %}
+                        <li><a href = "/#">Home</a></li> |
+                        <li><a href = "{{url_for ('logout')}}">Log Out</a></li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
+
+        <div class = "container">
+            <div class = "col1">
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                    {%if messages %}
+                        {% for category, msg in messages%}
+    
+                            <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                {{msg}}
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+    
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
+            </div>
+        </div>
+
+    </head>
+    
+
+
+    <body>
+
+        <div class = "heading">
+            <h1><a href = "/#">SMARTEN BLOG</a></h1> 
+        </div>
+
+        <div class="box">
+
+            <h2 class = "main-title">
+                {{post[0][1]}}
+            </h2>
+    
+            <div class = "main-image">
+                <img src = "{{ url_for ('static', filename = post[0][5])}}">
+            </div>
+
+            <div class = "p_details">
+                <b>
+                    <div id = "i_author">
+                        <i class="fa-regular fa-user spacing"> </i>
+                        <a href = "{{url_for ('posts_by_author', author_id = post[0][-1])}}">
+                        {{author_name}}</a><br/>
+                    </div>
+                    
+                    <i class="fa-regular fa-calendar spacing"> </i>
+                    {{post[0][4]}}
+                    
+                </b>
+            </div>
+
+            <br/><br/><hr class = "indv"/>
+    
+            <div class = "description">
+    
+                <p class = "main-text">
+                    {% for paragraph in paragraphs %}
+                        {{paragraph}}<br/>
+                    {% endfor %}
+                </p>
+    
+            </div>
+
+            <hr class = "indv"/><br/><br/>
+    
+            <div class = "end">
+
+                <div class = "tags">
+                    <b>Tags:</b>
+                    {% for i in tag_names %}
+                        {% set t_id = tag_names.index(i) %}
+                        {% if tag_names.index(i) != len_tags %}
+                            <a href = "{{url_for ('posts_with_tag', tag_id = tag_ids[t_id])}}">{{i}}</a>,
+                        {% else %}
+                            <a href = "{{url_for ('posts_with_tag', tag_id = tag_ids[t_id])}}">{{i}}</a>
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            
+                <div class = "share">
+                    <a href="#">
+                        <i class = "fab fa-facebook"></i>
+                    </a>
+                    <a href="#">
+                        <i class = "fab fa-instagram"></i>
+                    </a>
+                    <a href="#">
+                        <i class = "fab fa-twitter"></i>
+                    </a>
+                    <a href="#">
+                        <i class="fa-solid fa-share-nodes"></i>
+                    </a>
+                </div>
+
+            </div>
+            
+        </div>
+        
+        <br/><br/>
+
+    </body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta name = "viewport" content = "width-device-width, initial-scale=1.0"/>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+     <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
+
+    <link href="{{url_for('static', filename = 'css/style.css')}}" rel = "stylesheet" type = "text/css"/>
+    <link href="{{url_for('static', filename = 'css/style1.css')}}" rel = "stylesheet" type = "text/css"/>
+    <title>Update an Article</title>
+
+    <nav class = "nav-bar">
+        <div class = "nav-div">
+            <ul>
+                <li><a href = "/#">Home</a></li> | 
+                <li><a href = "{{url_for ('article_create')}}">Add</a></li>
+            </ul>
+        </div>
+    </nav>
+</head>
+
+<body>
+
+    <div class = "heading">
+        <h1><a href = "/#">SMARTEN BLOG</a></h1> 
+    </div>
+
+    <div class = "wrapper">
+        <div class = "title">
+            Update an Article!
+        </div>
+
+        <form action = "" method = "POST" enctype="multipart/form-data">
+            <div class="input-field">
+                <label>Title</label>
+                <input type = "text" class = "input" name="title" value = "{{title}}">
+            </div>
+            <div class="input-field">
+                <label>Summary</label>
+                <textarea class = "textarea" name = "summary" >{{summary}}</textarea>
+            </div>
+            <div class="input-field">
+                <label>Content</label>
+                <textarea class = "textarea1" name = "content">{{content}}</textarea>
+            </div>
+            <div class="input-field">
+                <label>Image</label>
+                <div class = "input1">
+                    <input type = "file" title = "hello " name = "image" accept = "image/*" id = "file-input"/>
+                    <img src = "{{ url_for ('static', filename = image_path)}}">
+
+                </div>
+            </div>
+            <div class="input-field">
+                <label>Tags</label>
+                <input type = "text" class = "input", name = "tags" value = "{{tags}}">
+            </div>
+            <div class = "submit">
+                <input type = "submit" value = "Submit" class = "btn">
+            </div>
+        </form>
+  
+    </div>
+
+    <br/><br/>
+
+ 
+
+
+</body>
+
+</html>
